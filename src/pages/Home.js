@@ -113,7 +113,7 @@ const Home = () => {
                           </ListItemIcon>
                           <Link
                             style={{ color: palette.secondary.main }}
-                            to={`/search/location/${location}`}
+                            to={`https://jobportal-backend-relf.onrender.com/search/location/${location}`}
                           >
                             {location}
                           </Link>

@@ -44,7 +44,7 @@ const CardElement = ({ jobTitle, description, category, location, id }) => {
         >
           <Link
             style={{ textDecoration: "none", color: "white", boxShadow: 0 }}
-            to={`/job/${id}`}
+            to={`https://jobportal-backend-relf.onrender.com/job/${id}`}
           >
             More Details
           </Link>

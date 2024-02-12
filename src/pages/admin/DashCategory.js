@@ -58,7 +58,7 @@ const DashCategory = () => {
           <Button variant="contained">
             <Link
               style={{ color: "white", textDecoration: "none" }}
-              to={`/admin/edit/user/${values.row._id}`}
+              to={`https://jobportal-backend-relf.onrender.com/admin/edit/user/${values.row._id}`}
             >
               Edit
             </Link>
@@ -84,7 +84,7 @@ const DashCategory = () => {
         <Button variant="contained" color="success" startIcon={<AddIcon />}>
           <Link
             style={{ color: "white", textDecoration: "none" }}
-            to="/admin/category/create"
+            to="https://jobportal-backend-relf.onrender.com/admin/category/create"
           >
             Create category
           </Link>

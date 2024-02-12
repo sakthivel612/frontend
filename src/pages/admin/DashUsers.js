@@ -66,7 +66,7 @@ const DashUsers = () => {
           <Button variant="contained">
             <Link
               style={{ color: "white", textDecoration: "none" }}
-              to={`/admin/edit/users/${values.row._id}`}
+              to={`https://jobportal-backend-relf.onrender.com/admin/edit/users/${values.row._id}`}
             >
               Edit
             </Link>

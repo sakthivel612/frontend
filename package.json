@@ -53,6 +53,5 @@
   },
   "devDependencies": {
     "@redux-devtools/extension": "^3.3.0"
-  },
-  "proxy": "https://jobportal-backend-relf.onrender.com"
+  }
 }
