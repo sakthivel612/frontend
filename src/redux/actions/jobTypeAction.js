@@ -13,6 +13,11 @@ import {
 export const jobTypeLoadAction = () => async (dispatch) => {
   dispatch({ type: JOB_TYPE_LOAD_REQUEST });
   try {
+    // const config = {
+    //   headers: {
+    //     token: JSON.parse(localStorage.getItem("userInfo")).token,
+    //   },
+    // };
     const { data } = await axios.get(
       "https://jobportal-backend-relf.onrender.com/api/type/jobs"
     );
@@ -33,9 +38,14 @@ export const createJobTypeAction = (jobtype) => async (dispatch) => {
   dispatch({ type: CREATE_JOB_TYPE_REQUEST });
 
   try {
+    const config = {
+      headers: {
+        token: JSON.parse(localStorage.getItem("userInfo")).token,
+      },
+    };
     const { data } = await axios.post(
       "https://jobportal-backend-relf.onrender.com/api/type/create",
-      jobtype
+      jobtype, config
     );
     dispatch({
       type: CREATE_JOB_TYPE_SUCCESS,

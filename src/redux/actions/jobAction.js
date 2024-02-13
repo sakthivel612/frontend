@@ -39,7 +39,15 @@ export const jobLoadAction =
 export const jobLoadSingleAction = (id) => async (dispatch) => {
   dispatch({ type: JOB_LOAD_SINGLE_REQUEST });
   try {
-    const { data } = await axios.get(`https://jobportal-backend-relf.onrender.com/api/job/${id}`);
+    const config = {
+      headers: {
+        token: JSON.parse(localStorage.getItem("userInfo")).token,
+      },
+    };
+    const { data } = await axios.get(
+      `https://jobportal-backend-relf.onrender.com/api/job/${id}`,
+      config
+    );
     dispatch({
       type: JOB_LOAD_SINGLE_SUCCESS,
       payload: data,
@@ -56,7 +64,15 @@ export const jobLoadSingleAction = (id) => async (dispatch) => {
 export const deleteSingleJobAction = (job_id) => async (dispatch) => {
   dispatch({ type: DELETE_JOB_REQUEST });
   try {
-    const { data } = await axios.delete(`https://jobportal-backend-relf.onrender.com/api/job/delete/${job_id}`);
+    const config = {
+      headers: {
+        token: JSON.parse(localStorage.getItem("userInfo")).token,
+      },
+    };
+    const { data } = await axios.delete(
+      `https://jobportal-backend-relf.onrender.com/api/job/delete/${job_id}`,
+      config
+    );
     dispatch({
       type: DELETE_JOB_SUCCESS,
       payload: data,
@@ -76,7 +92,16 @@ export const registerAjobAction = (job) => async (dispatch) => {
   dispatch({ type: REGISTER_JOB_REQUEST });
 
   try {
-    const { data } = await axios.post("https://jobportal-backend-relf.onrender.com/api/job/create", job);
+    const config = {
+      headers: {
+        token: JSON.parse(localStorage.getItem("userInfo")).token,
+      },
+    };
+    const { data } = await axios.post(
+      "https://jobportal-backend-relf.onrender.com/api/job/create",
+      job,
+      config
+    );
     dispatch({
       type: REGISTER_JOB_SUCCESS,
       payload: data,

@@ -24,10 +24,7 @@ import {
 export const userSignInAction = (user) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST });
   try {
-    const { data } = await axios.post(
-      "https://jobportal-backend-relf.onrender.com/api/signin",
-      user
-    );
+    const { data } = await axios.post("http://localhost:9000/api/signin", user);
     localStorage.setItem("userInfo", JSON.stringify(data));
     dispatch({
       type: USER_SIGNIN_SUCCESS,
@@ -47,10 +44,7 @@ export const userSignInAction = (user) => async (dispatch) => {
 export const userSignUpAction = (user) => async (dispatch) => {
   dispatch({ type: USER_SIGNUP_REQUEST });
   try {
-    const { data } = await axios.post(
-      "https://jobportal-backend-relf.onrender.com/api/signup",
-      user
-    );
+    const { data } = await axios.post("http://localhost:9000/api/signup", user);
 
     dispatch({
       type: USER_SIGNUP_SUCCESS,
@@ -70,9 +64,15 @@ export const userSignUpAction = (user) => async (dispatch) => {
 export const userLogoutAction = () => async (dispatch) => {
   dispatch({ type: USER_LOGOUT_REQUEST });
   try {
+    const config = {
+      headers: {
+        token: JSON.parse(localStorage.getItem("userInfo")).token,
+      },
+    };
     localStorage.removeItem("userInfo");
     const { data } = await axios.get(
-      "https://jobportal-backend-relf.onrender.com/api/logout"
+      "https://jobportal-backend-relf.onrender.com/api/logout",
+      config
     );
     dispatch({
       type: USER_LOGOUT_SUCCESS,
@@ -92,9 +92,12 @@ export const userLogoutAction = () => async (dispatch) => {
 export const userProfileAction = () => async (dispatch) => {
   dispatch({ type: USER_LOAD_REQUEST });
   try {
-    const { data } = await axios.get(
-      "https://jobportal-backend-relf.onrender.com/api/me"
-    );
+    const config = {
+      headers: {
+        token: JSON.parse(localStorage.getItem("userInfo")).token,
+      },
+    };
+    const { data } = await axios.get("https://jobportal-backend-relf.onrender.com/api/me", config);
     dispatch({
       type: USER_LOAD_SUCCESS,
       payload: data,
@@ -111,8 +114,14 @@ export const userProfileAction = () => async (dispatch) => {
 export const allUserAction = () => async (dispatch) => {
   dispatch({ type: ALL_USER_LOAD_REQUEST });
   try {
+    const config = {
+      headers: {
+        token: JSON.parse(localStorage.getItem("userInfo")).token,
+      },
+    };
     const { data } = await axios.get(
-      "https://jobportal-backend-relf.onrender.com/api/allusers"
+      "https://jobportal-backend-relf.onrender.com/api/allusers",
+      config
     );
     dispatch({
       type: ALL_USER_LOAD_SUCCESS,
@@ -130,9 +139,15 @@ export const allUserAction = () => async (dispatch) => {
 export const userApplyJobAction = (job) => async (dispatch) => {
   dispatch({ type: USER_APPLY_JOB_REQUEST });
   try {
+    const config = {
+      headers: {
+        token: JSON.parse(localStorage.getItem("userInfo")).token,
+      },
+    };
     const { data } = await axios.post(
       "https://jobportal-backend-relf.onrender.com/api/user/jobhistory",
-      job
+      job,
+      config
     );
 
     dispatch({
