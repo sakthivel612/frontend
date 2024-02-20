@@ -24,7 +24,10 @@ import {
 export const userSignInAction = (user) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST });
   try {
-    const { data } = await axios.post("http://localhost:9000/api/signin", user);
+    const { data } = await axios.post(
+      "https://jobportal-backend-relf.onrender.com/api/signin",
+      user
+    );
     localStorage.setItem("userInfo", JSON.stringify(data));
     dispatch({
       type: USER_SIGNIN_SUCCESS,
@@ -44,7 +47,10 @@ export const userSignInAction = (user) => async (dispatch) => {
 export const userSignUpAction = (user) => async (dispatch) => {
   dispatch({ type: USER_SIGNUP_REQUEST });
   try {
-    const { data } = await axios.post("http://localhost:9000/api/signup", user);
+    const { data } = await axios.post(
+      "https://jobportal-backend-relf.onrender.com/api/signup",
+      user
+    );
 
     dispatch({
       type: USER_SIGNUP_SUCCESS,
@@ -97,7 +103,10 @@ export const userProfileAction = () => async (dispatch) => {
         token: JSON.parse(localStorage.getItem("userInfo")).token,
       },
     };
-    const { data } = await axios.get("https://jobportal-backend-relf.onrender.com/api/me", config);
+    const { data } = await axios.get(
+      "https://jobportal-backend-relf.onrender.com/api/me",
+      config
+    );
     dispatch({
       type: USER_LOAD_SUCCESS,
       payload: data,
